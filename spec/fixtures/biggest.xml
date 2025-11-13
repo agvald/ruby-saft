@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <AuditFile xmlns="urn:StandardAuditFile-Taxation-Financial:NO">
   <Header>
-    <AuditFileVersion>1.10</AuditFileVersion>
+    <AuditFileVersion>1.30</AuditFileVersion>
     <AuditFileCountry>NO</AuditFileCountry>
     <AuditFileDateCreated>2022-11-14</AuditFileDateCreated>
     <SoftwareCompanyName>AccWare</SoftwareCompanyName>

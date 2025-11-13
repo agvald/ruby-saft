@@ -43,7 +43,7 @@ RSpec.describe SAFT::V2 do
   let(:minimal_valid) {
     {
       header: {
-        audit_file_version: "1.10",
+        audit_file_version: "1.30",
         audit_file_country: "NO",
         audit_file_date_created: Date.civil(2022, 11, 14),
         software_company_name: "Example",
@@ -114,7 +114,7 @@ RSpec.describe SAFT::V2 do
     let(:biggest) {
       {
         header: {
-          audit_file_version: "1.10",
+          audit_file_version: "1.30",
           audit_file_country: "NO",
           audit_file_date_created: Date.civil(2022, 11, 14),
           software_company_name: "AccWare",
