@@ -174,7 +174,15 @@ module SAFT::V2
       when Types::AnalysisStructure.name.split("::").last
         xml.AnalysisType(struct.analysis_type) if struct.analysis_type
         xml.AnalysisID(struct.analysis_id) if struct.analysis_id
-        xml.AnalysisAmount { build(struct.analysis_amount) } if struct.analysis_amount
+        if struct.analysis_amount
+          if struct.analysis_amount.amount.positive?
+            xml.DebitAnalysisAmount { build(struct.analysis_amount) }
+          else
+            analysis_amount = struct.analysis_amount.attributes
+            analysis_amount[:amount] = analysis_amount[:amount] * -1
+            xml.CreditAnalysisAmount { build(Types::AmountStrcture[analysis_amount]) }
+          end
+        end
 
       when Types::AnalysisPartyInfoStructure.name.split("::").last
         xml.AnalysisType(struct.analysis_type)
