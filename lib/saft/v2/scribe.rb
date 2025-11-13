@@ -73,22 +73,30 @@ module SAFT::V2
         build_company_structure(struct)
         xml.CustomerID(struct.customer_id)
         xml.SelfBillingIndicator(struct.self_billing_indicator) if struct.self_billing_indicator
-        xml.AccountID(struct.account_id) if struct.account_id
-        xml.OpeningDebitBalance(struct.opening_debit_balance.to_s("F")) if struct.opening_debit_balance
-        xml.OpeningCreditBalance(struct.opening_credit_balance.to_s("F")) if struct.opening_credit_balance
-        xml.ClosingDebitBalance(struct.closing_debit_balance.to_s("F")) if struct.closing_debit_balance
-        xml.ClosingCreditBalance(struct.closing_credit_balance.to_s("F")) if struct.closing_credit_balance
+        if ![struct.opening_debit_balance, struct.opening_credit_balance, struct.closing_debit_balance, struct.closing_credit_balance].compact.empty?
+          xml.BalanceAccount {
+            xml.AccountID(struct.account_id) if struct.account_id
+            xml.OpeningDebitBalance(struct.opening_debit_balance.to_s("F")) if struct.opening_debit_balance
+            xml.OpeningCreditBalance(struct.opening_credit_balance.to_s("F")) if struct.opening_credit_balance
+            xml.ClosingDebitBalance(struct.closing_debit_balance.to_s("F")) if struct.closing_debit_balance
+            xml.ClosingCreditBalance(struct.closing_credit_balance.to_s("F")) if struct.closing_credit_balance
+          }
+        end
         xml.PartyInfo { build(struct.party_info) } if struct.party_info
 
       when Types::Supplier.name.split("::").last
         build_company_structure(struct)
         xml.SupplierID(struct.supplier_id)
         xml.SelfBillingIndicator(struct.self_billing_indicator) if struct.self_billing_indicator
-        xml.AccountID(struct.account_id) if struct.account_id
-        xml.OpeningDebitBalance(struct.opening_debit_balance.to_s("F")) if struct.opening_debit_balance
-        xml.OpeningCreditBalance(struct.opening_credit_balance.to_s("F")) if struct.opening_credit_balance
-        xml.ClosingDebitBalance(struct.closing_debit_balance.to_s("F")) if struct.closing_debit_balance
-        xml.ClosingCreditBalance(struct.closing_credit_balance.to_s("F")) if struct.closing_credit_balance
+        if ![struct.opening_debit_balance, struct.opening_credit_balance, struct.closing_debit_balance, struct.closing_credit_balance].compact.empty?
+          xml.BalanceAccount {
+            xml.AccountID(struct.account_id) if struct.account_id
+            xml.OpeningDebitBalance(struct.opening_debit_balance.to_s("F")) if struct.opening_debit_balance
+            xml.OpeningCreditBalance(struct.opening_credit_balance.to_s("F")) if struct.opening_credit_balance
+            xml.ClosingDebitBalance(struct.closing_debit_balance.to_s("F")) if struct.closing_debit_balance
+            xml.ClosingCreditBalance(struct.closing_credit_balance.to_s("F")) if struct.closing_credit_balance
+          }
+        end
         xml.PartyInfo { build(struct.party_info) } if struct.party_info
 
       when Types::Owner.name.split("::").last

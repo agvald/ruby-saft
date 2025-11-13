@@ -152,9 +152,11 @@
         <Address/>
         <CustomerID>C1</CustomerID>
         <SelfBillingIndicator>No</SelfBillingIndicator>
-        <AccountID>1500:12</AccountID>
-        <OpeningDebitBalance>1.0</OpeningDebitBalance>
-        <ClosingDebitBalance>2.0</ClosingDebitBalance>
+        <BalanceAccount>
+          <AccountID>1500:12</AccountID>
+          <OpeningDebitBalance>1.0</OpeningDebitBalance>
+          <ClosingDebitBalance>2.0</ClosingDebitBalance>
+        </BalanceAccount>
         <PartyInfo>
           <PaymentTerms>
             <Days>5</Days>
@@ -182,8 +184,10 @@
         <Name>Acme the second</Name>
         <Address/>
         <CustomerID>C2</CustomerID>
-        <OpeningCreditBalance>3.0</OpeningCreditBalance>
-        <ClosingCreditBalance>4.0</ClosingCreditBalance>
+        <BalanceAccount>
+          <OpeningCreditBalance>3.0</OpeningCreditBalance>
+          <ClosingCreditBalance>4.0</ClosingCreditBalance>
+        </BalanceAccount>
       </Customer>
       <Customer>
         <Name>Acme the Suied</Name>
@@ -197,9 +201,11 @@
         <Address/>
         <SupplierID>S1</SupplierID>
         <SelfBillingIndicator>No</SelfBillingIndicator>
-        <AccountID>1500:12</AccountID>
-        <OpeningDebitBalance>1.0</OpeningDebitBalance>
-        <ClosingDebitBalance>2.0</ClosingDebitBalance>
+        <BalanceAccount>
+          <AccountID>1500:12</AccountID>
+          <OpeningDebitBalance>1.0</OpeningDebitBalance>
+          <ClosingDebitBalance>2.0</ClosingDebitBalance>
+        </BalanceAccount>
         <PartyInfo>
           <PaymentTerms>
             <Days>5</Days>
@@ -227,8 +233,10 @@
         <Name>Been the second</Name>
         <Address/>
         <SupplierID>S2</SupplierID>
-        <OpeningCreditBalance>3.0</OpeningCreditBalance>
-        <ClosingCreditBalance>4.0</ClosingCreditBalance>
+        <BalanceAccount>
+          <OpeningCreditBalance>3.0</OpeningCreditBalance>
+          <ClosingCreditBalance>4.0</ClosingCreditBalance>
+        </BalanceAccount>
       </Supplier>
       <Supplier>
         <Name>Been the Suied</Name>
