@@ -223,7 +223,7 @@ module SAFT::V2::Types
           attribute(:software_version, base::SAFshorttextType)
           attribute(:company, base::CompanyHeaderStructure)
           attribute(:default_currency_code, base::ISOCurrencyCode)
-          attribute(:selection_criteria, base::SelectionCriteriaStructure.optional.meta(omittable: true))
+          attribute(:selection_criteria, base::SelectionCriteriaStructure)
           attribute(:header_comment, base::SAFlongtextType.optional.meta(omittable: true))
         end
 

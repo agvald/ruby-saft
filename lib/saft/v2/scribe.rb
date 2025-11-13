@@ -62,7 +62,7 @@ module SAFT::V2
         xml.SoftwareVersion(struct.software_version)
         xml.Company { build(struct.company) }
         xml.DefaultCurrencyCode(struct.default_currency_code)
-        xml.SelectionCriteria { build(struct.selection_criteria) } if struct.selection_criteria
+        xml.SelectionCriteria { build(struct.selection_criteria) }
         xml.HeaderComment(struct.header_comment) if struct.header_comment
         xml.TaxAccountingBasis(struct.tax_accounting_basis)
         xml.TaxEntity(struct.tax_entity) if struct.tax_entity
@@ -216,7 +216,7 @@ module SAFT::V2
         xml.SoftwareVersion(struct.software_version)
         xml.Company { build(struct.company) }
         xml.DefaultCurrencyCode(struct.default_currency_code)
-        xml.SelectionCriteria { build(struct.selection_criteria) } if struct.selection_criteria
+        xml.SelectionCriteria { build(struct.selection_criteria) }
         xml.HeaderComment(struct.header_comment) if struct.header_comment
 
       when Types::Account.name.split("::").last

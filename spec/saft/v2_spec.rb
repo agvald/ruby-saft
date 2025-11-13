@@ -50,6 +50,14 @@ RSpec.describe SAFT::V2 do
         software_id: "Example.no",
         software_version: "1.0",
         default_currency_code: "NOK",
+        selection_criteria: {
+          tax_reporting_jurisdiction: "The pinup man",
+          company_entity: "The pinup CO",
+          selection_start_date: Date.civil(2020, 1, 1),
+          selection_end_date: Date.civil(2020, 12, 31),
+          document_type: "All kind are included",
+          other_criterias: ["Elm is cool", "Ruby is cool", "Javascript is \"cool\""],
+        },
         tax_accounting_basis: "A",
         company: {
           registration_number: "Regi",
