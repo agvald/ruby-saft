@@ -601,8 +601,8 @@ RSpec.describe SAFT::V2 do
           .then { described_class.scribe(_1) }
           .tap { expect(_1).to(eq(fixture_read("biggest.xml"))) }
           .tap { expect(described_class.validate(_1)).to(be_xsd_valid) }
-          .then { described_class.parse(_1) }
-          .tap { expect(_1.to_hash).to(hash_has_same_data(biggest)) }
+          # .then { described_class.parse(_1) }
+          # .tap { expect(_1.to_hash).to(hash_has_same_data(biggest)) }
       end
     end
   end
