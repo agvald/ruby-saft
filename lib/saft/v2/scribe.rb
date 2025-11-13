@@ -195,7 +195,13 @@ module SAFT::V2
         xml.Country(struct.country) if struct.country
         xml.TaxBase(struct.tax_base.to_s("F")) if struct.tax_base
         xml.TaxBaseDescription(struct.tax_base_description) if struct.tax_base_description
-        xml.TaxAmount { build(struct.tax_amount) }
+        if struct.tax_amount.amount.positive?
+          xml.DebitTaxAmount { build(struct.tax_amount) }
+        else
+          tax_amount = struct.tax_amount.attributes
+          tax_amount[:amount] = tax_amount[:amount] * -1
+          xml.CreditTaxAmount { build(Types::AmountStructure[tax_amount]) }
+        end
         xml.TaxExemptionReason(struct.tax_exemption_reason) if struct.tax_exemption_reason
         xml.TaxDeclarationPeriod(struct.tax_declaration_period) if struct.tax_declaration_period
 

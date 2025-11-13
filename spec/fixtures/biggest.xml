@@ -367,16 +367,16 @@
             <Country>NO</Country>
             <TaxBase>9000.0</TaxBase>
             <TaxBaseDescription>Some random description</TaxBaseDescription>
-            <TaxAmount>
+            <DebitTaxAmount>
               <Amount>593.0</Amount>
-            </TaxAmount>
+            </DebitTaxAmount>
             <TaxExemptionReason>550</TaxExemptionReason>
             <TaxDeclarationPeriod>2020-04</TaxDeclarationPeriod>
           </TaxInformation>
           <TaxInformation>
-            <TaxAmount>
+            <DebitTaxAmount>
               <Amount>5.0</Amount>
-            </TaxAmount>
+            </DebitTaxAmount>
           </TaxInformation>
           <ReferenceNumber>1512</ReferenceNumber>
           <CID>21</CID>
