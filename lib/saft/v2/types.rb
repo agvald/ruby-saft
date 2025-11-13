@@ -241,9 +241,8 @@ module SAFT::V2::Types
         klass = Class.new(Dry::Struct) do
           attribute(:account_id, base::SAFmiddle2textType)
           attribute(:account_description, base::SAFlongtextType)
-          attribute(:standard_account_id, base::SAFmiddle1textType.optional.meta(omittable: true))
-          attribute(:grouping_category, base::SAFmiddle1textType.optional.meta(omittable: true))
-          attribute(:grouping_code, base::SAFmiddle1textType.optional.meta(omittable: true))
+          attribute(:grouping_category, base::SAFmiddle1textType)
+          attribute(:grouping_code, base::SAFmiddle1textType)
           attribute(:account_type, base::SAFshorttextType)
           attribute(:account_creation_date, Types::Date.optional.meta(omittable: true))
           attribute(:opening_debit_balance, base::SAFmonetaryType.optional.meta(omittable: true))

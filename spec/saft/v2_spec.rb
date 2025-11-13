@@ -96,7 +96,8 @@ RSpec.describe SAFT::V2 do
         {
           account_id: "1920",
           account_description: "Bank Account",
-          standard_account_id: "19",
+          grouping_category: "balanseverdiForOmloepsmiddel",
+          grouping_code: "1920",
           account_type: "GL",
           account_creation_date: Date.civil(1998, 1, 1),
         },
@@ -111,7 +112,7 @@ RSpec.describe SAFT::V2 do
           valid?: false,
           errors: [
             have_attributes(
-              to_s: "26:0: ERROR: Element '{urn:StandardAuditFile-Taxation-Financial:NO}Account': Missing child element(s). Expected is one of ( {urn:StandardAuditFile-Taxation-Financial:NO}OpeningDebitBalance, {urn:StandardAuditFile-Taxation-Financial:NO}OpeningCreditBalance ).",
+              to_s: "36:0: ERROR: Element '{urn:StandardAuditFile-Taxation-Financial:NO}Account': Missing child element(s). Expected is one of ( {urn:StandardAuditFile-Taxation-Financial:NO}OpeningDebitBalance, {urn:StandardAuditFile-Taxation-Financial:NO}OpeningCreditBalance ).",
             ),
           ],
         ),
@@ -263,9 +264,8 @@ RSpec.describe SAFT::V2 do
             {
               account_id: "1920",
               account_description: "Bank Account",
-              standard_account_id: "19",
-              grouping_category: "A",
-              grouping_code: "A",
+              grouping_category: "balanseverdiForOmloepsmiddel",
+              grouping_code: "1920",
               account_type: "GL",
               account_creation_date: Date.civil(1998, 1, 1),
               opening_debit_balance: BigDecimal("10.0"),
@@ -274,6 +274,8 @@ RSpec.describe SAFT::V2 do
             {
               account_id: "1920",
               account_description: "Bank Account",
+              grouping_category: "balanseverdiForOmloepsmiddel",
+              grouping_code: "1920",
               account_type: "GL",
               opening_credit_balance: BigDecimal("12.0"),
               closing_credit_balance: BigDecimal("13.0"),

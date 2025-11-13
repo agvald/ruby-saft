@@ -130,9 +130,8 @@
       <Account>
         <AccountID>1920</AccountID>
         <AccountDescription>Bank Account</AccountDescription>
-        <StandardAccountID>19</StandardAccountID>
-        <GroupingCategory>A</GroupingCategory>
-        <GroupingCode>A</GroupingCode>
+        <GroupingCategory>balanseverdiForOmloepsmiddel</GroupingCategory>
+        <GroupingCode>1920</GroupingCode>
         <AccountType>GL</AccountType>
         <AccountCreationDate>1998-01-01</AccountCreationDate>
         <OpeningDebitBalance>10.0</OpeningDebitBalance>
@@ -141,6 +140,8 @@
       <Account>
         <AccountID>1920</AccountID>
         <AccountDescription>Bank Account</AccountDescription>
+        <GroupingCategory>balanseverdiForOmloepsmiddel</GroupingCategory>
+        <GroupingCode>1920</GroupingCode>
         <AccountType>GL</AccountType>
         <OpeningCreditBalance>12.0</OpeningCreditBalance>
         <ClosingCreditBalance>13.0</ClosingCreditBalance>

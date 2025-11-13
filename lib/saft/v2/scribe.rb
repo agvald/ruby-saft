@@ -244,9 +244,8 @@ module SAFT::V2
       when Types::Account.name.split("::").last
         xml.AccountID(struct.account_id)
         xml.AccountDescription(struct.account_description)
-        xml.StandardAccountID(struct.standard_account_id) if struct.standard_account_id
-        xml.GroupingCategory(struct.grouping_category) if struct.grouping_category
-        xml.GroupingCode(struct.grouping_code) if struct.grouping_code
+        xml.GroupingCategory(struct.grouping_category)
+        xml.GroupingCode(struct.grouping_code)
         xml.AccountType(struct.account_type)
         xml.AccountCreationDate(struct.account_creation_date) if struct.account_creation_date
         xml.OpeningDebitBalance(struct.opening_debit_balance.to_s("F")) if struct.opening_debit_balance
