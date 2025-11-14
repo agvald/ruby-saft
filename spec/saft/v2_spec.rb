@@ -472,11 +472,14 @@ RSpec.describe SAFT::V2 do
                   period_year: 2020,
                   transaction_date: Date.civil(2020, 3, 10),
                   source_id: "Boho",
+                  voucher_type: "B",
+                  voucher_description: "Bank",
                   transaction_type: "normal",
                   description: "From the bank",
                   batch_id: "12",
                   system_entry_date: Date.civil(2020, 3, 12),
                   gl_posting_date: Date.civil(2020, 3, 10),
+                  modification_date: Date.civil(2020, 3, 18),
                   system_id: "12-651-8951",
                   lines: [
                     {

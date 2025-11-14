@@ -354,11 +354,14 @@ module SAFT::V2
         xml.PeriodYear(struct.period_year) if struct.period_year
         xml.TransactionDate(struct.transaction_date) if struct.transaction_date
         xml.SourceID(struct.source_id) if struct.source_id
+        xml.VoucherType(struct.voucher_type) if struct.voucher_type
+        xml.VoucherDescription(struct.voucher_description) if struct.voucher_description
         xml.TransactionType(struct.transaction_type) if struct.transaction_type
         xml.Description(struct.description) if struct.description
         xml.BatchID(struct.batch_id) if struct.batch_id
         xml.SystemEntryDate(struct.system_entry_date) if struct.system_entry_date
         xml.GLPostingDate(struct.gl_posting_date) if struct.gl_posting_date
+        xml.ModificationDate(struct.modification_date) if struct.modification_date
         xml.SystemID(struct.system_id) if struct.system_id
         struct.lines&.each do |line|
           xml.Line { build(line) }

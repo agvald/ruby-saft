@@ -377,11 +377,14 @@ module SAFT::V2::Types
           attribute(:period_year, Types::Integer)
           attribute(:transaction_date, Types::Date)
           attribute(:source_id, base::SAFmiddle1textType.optional.meta(omittable: true))
+          attribute(:voucher_type, base::SAFmiddle2textType.optional.meta(omittable: true))
+          attribute(:voucher_description, base::SAFmiddle2textType.optional.meta(omittable: true))
           attribute(:transaction_type, base::SAFshorttextType.optional.meta(omittable: true))
           attribute(:description, base::SAFlongtextType)
           attribute(:batch_id, base::SAFmiddle1textType.optional.meta(omittable: true))
           attribute(:system_entry_date, Types::Date)
           attribute(:gl_posting_date, Types::Date)
+          attribute(:modification_date, Types::Date.optional.meta(omittable: true))
           # ignored since xsd said "Not in use."
           # attribute :CustomerID, base::SAFmiddle1textType.optional.meta(omittable: true)
           # ignored since xsd said "Not in use."

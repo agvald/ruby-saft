@@ -337,11 +337,14 @@
         <PeriodYear>2020</PeriodYear>
         <TransactionDate>2020-03-10</TransactionDate>
         <SourceID>Boho</SourceID>
+        <VoucherType>B</VoucherType>
+        <VoucherDescription>Bank</VoucherDescription>
         <TransactionType>normal</TransactionType>
         <Description>From the bank</Description>
         <BatchID>12</BatchID>
         <SystemEntryDate>2020-03-12</SystemEntryDate>
         <GLPostingDate>2020-03-10</GLPostingDate>
+        <ModificationDate>2020-03-18</ModificationDate>
         <SystemID>12-651-8951</SystemID>
         <Line>
           <RecordID>line-18</RecordID>
