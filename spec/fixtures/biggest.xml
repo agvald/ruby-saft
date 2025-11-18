@@ -194,6 +194,10 @@
         <Name>Acme the Suied</Name>
         <Address/>
         <CustomerID>C3</CustomerID>
+        <BalanceAccount>
+          <OpeningCreditBalance>0.0</OpeningCreditBalance>
+          <ClosingCreditBalance>0.0</ClosingCreditBalance>
+        </BalanceAccount>
       </Customer>
     </Customers>
     <Suppliers>
@@ -243,6 +247,10 @@
         <Name>Been the Suied</Name>
         <Address/>
         <SupplierID>S3</SupplierID>
+        <BalanceAccount>
+          <OpeningCreditBalance>0.0</OpeningCreditBalance>
+          <ClosingCreditBalance>0.0</ClosingCreditBalance>
+        </BalanceAccount>
       </Supplier>
     </Suppliers>
     <TaxTable>
@@ -371,16 +379,16 @@
             <Country>NO</Country>
             <TaxBase>9000.0</TaxBase>
             <TaxBaseDescription>Some random description</TaxBaseDescription>
-            <DebitTaxAmount>
+            <CreditTaxAmount>
               <Amount>593.0</Amount>
-            </DebitTaxAmount>
+            </CreditTaxAmount>
             <TaxExemptionReason>550</TaxExemptionReason>
             <TaxDeclarationPeriod>2020-04</TaxDeclarationPeriod>
           </TaxInformation>
           <TaxInformation>
-            <DebitTaxAmount>
+            <CreditTaxAmount>
               <Amount>5.0</Amount>
-            </DebitTaxAmount>
+            </CreditTaxAmount>
           </TaxInformation>
           <ReferenceNumber>1512</ReferenceNumber>
           <CID>21</CID>

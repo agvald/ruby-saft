@@ -73,13 +73,13 @@ module SAFT::V2
         build_company_structure(struct)
         xml.CustomerID(struct.customer_id)
         xml.SelfBillingIndicator(struct.self_billing_indicator) if struct.self_billing_indicator
-        if ![struct.opening_debit_balance, struct.opening_credit_balance, struct.closing_debit_balance, struct.closing_credit_balance].compact.empty?
+        struct.balance_accounts.each do |balance|
           xml.BalanceAccount {
-            xml.AccountID(struct.account_id) if struct.account_id
-            xml.OpeningDebitBalance(struct.opening_debit_balance.to_s("F")) if struct.opening_debit_balance
-            xml.OpeningCreditBalance(struct.opening_credit_balance.to_s("F")) if struct.opening_credit_balance
-            xml.ClosingDebitBalance(struct.closing_debit_balance.to_s("F")) if struct.closing_debit_balance
-            xml.ClosingCreditBalance(struct.closing_credit_balance.to_s("F")) if struct.closing_credit_balance
+            xml.AccountID(balance.account_id) if balance.account_id
+            xml.OpeningDebitBalance(balance.opening_debit_balance.to_s("F")) if balance.opening_debit_balance
+            xml.OpeningCreditBalance(balance.opening_credit_balance.to_s("F")) if balance.opening_credit_balance
+            xml.ClosingDebitBalance(balance.closing_debit_balance.to_s("F")) if balance.closing_debit_balance
+            xml.ClosingCreditBalance(balance.closing_credit_balance.to_s("F")) if balance.closing_credit_balance
           }
         end
         xml.PartyInfo { build(struct.party_info) } if struct.party_info
@@ -88,13 +88,13 @@ module SAFT::V2
         build_company_structure(struct)
         xml.SupplierID(struct.supplier_id)
         xml.SelfBillingIndicator(struct.self_billing_indicator) if struct.self_billing_indicator
-        if ![struct.opening_debit_balance, struct.opening_credit_balance, struct.closing_debit_balance, struct.closing_credit_balance].compact.empty?
+        struct.balance_accounts.each do |balance|
           xml.BalanceAccount {
-            xml.AccountID(struct.account_id) if struct.account_id
-            xml.OpeningDebitBalance(struct.opening_debit_balance.to_s("F")) if struct.opening_debit_balance
-            xml.OpeningCreditBalance(struct.opening_credit_balance.to_s("F")) if struct.opening_credit_balance
-            xml.ClosingDebitBalance(struct.closing_debit_balance.to_s("F")) if struct.closing_debit_balance
-            xml.ClosingCreditBalance(struct.closing_credit_balance.to_s("F")) if struct.closing_credit_balance
+            xml.AccountID(balance.account_id) if balance.account_id
+            xml.OpeningDebitBalance(balance.opening_debit_balance.to_s("F")) if balance.opening_debit_balance
+            xml.OpeningCreditBalance(balance.opening_credit_balance.to_s("F")) if balance.opening_credit_balance
+            xml.ClosingDebitBalance(balance.closing_debit_balance.to_s("F")) if balance.closing_debit_balance
+            xml.ClosingCreditBalance(balance.closing_credit_balance.to_s("F")) if balance.closing_credit_balance
           }
         end
         xml.PartyInfo { build(struct.party_info) } if struct.party_info
@@ -174,15 +174,8 @@ module SAFT::V2
       when Types::AnalysisStructure.name.split("::").last
         xml.AnalysisType(struct.analysis_type) if struct.analysis_type
         xml.AnalysisID(struct.analysis_id) if struct.analysis_id
-        if struct.analysis_amount
-          if struct.analysis_amount.amount.positive?
-            xml.DebitAnalysisAmount { build(struct.analysis_amount) }
-          else
-            analysis_amount = struct.analysis_amount.attributes
-            analysis_amount[:amount] = analysis_amount[:amount] * -1
-            xml.CreditAnalysisAmount { build(Types::AmountStrcture[analysis_amount]) }
-          end
-        end
+        xml.DebitAnalysisAmount { build(struct.debit_analysis_amount) } if struct.debit_analysis_amount
+        xml.CreditAnalysisAmount { build(struct.credit_analysis_amount) } if struct.credit_analysis_amount
 
       when Types::AnalysisPartyInfoStructure.name.split("::").last
         xml.AnalysisType(struct.analysis_type)
@@ -195,13 +188,8 @@ module SAFT::V2
         xml.Country(struct.country) if struct.country
         xml.TaxBase(struct.tax_base.to_s("F")) if struct.tax_base
         xml.TaxBaseDescription(struct.tax_base_description) if struct.tax_base_description
-        if struct.tax_amount.amount.positive?
-          xml.DebitTaxAmount { build(struct.tax_amount) }
-        else
-          tax_amount = struct.tax_amount.attributes
-          tax_amount[:amount] = tax_amount[:amount] * -1
-          xml.CreditTaxAmount { build(Types::AmountStructure[tax_amount]) }
-        end
+        xml.DebitTaxAmount { build(struct.debit_tax_amount) } if struct.debit_tax_amount
+        xml.CreditTaxAmount { build(struct.credit_tax_amount) } if struct.credit_tax_amount
         xml.TaxExemptionReason(struct.tax_exemption_reason) if struct.tax_exemption_reason
         xml.TaxDeclarationPeriod(struct.tax_declaration_period) if struct.tax_declaration_period
 

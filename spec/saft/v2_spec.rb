@@ -289,9 +289,11 @@ RSpec.describe SAFT::V2 do
               ],
               customer_id: "C1",
               self_billing_indicator: "No",
-              account_id: "1500:12",
-              opening_debit_balance: BigDecimal("1.0"),
-              closing_debit_balance: BigDecimal("2.0"),
+              balance_accounts: [{
+                account_id: "1500:12",
+                opening_debit_balance: BigDecimal("1.0"),
+                closing_debit_balance: BigDecimal("2.0"),
+              }],
               party_info: {
                 payment_terms: {
                   days: 5,
@@ -317,14 +319,20 @@ RSpec.describe SAFT::V2 do
                 {},
               ],
               customer_id: "C2",
-              opening_credit_balance: BigDecimal("3.0"),
-              closing_credit_balance: BigDecimal("4.0"),
+              balance_accounts: [{
+                opening_credit_balance: BigDecimal("3.0"),
+                closing_credit_balance: BigDecimal("4.0"),
+              }],
             },
             {
               name: "Acme the Suied",
               addresses: [
                 {},
               ],
+              balance_accounts: [{
+                opening_credit_balance: BigDecimal("0.0"),
+                closing_credit_balance: BigDecimal("0.0"),
+              }],
               customer_id: "C3",
             },
           ],
@@ -336,9 +344,11 @@ RSpec.describe SAFT::V2 do
               ],
               supplier_id: "S1",
               self_billing_indicator: "No",
-              account_id: "1500:12",
-              opening_debit_balance: BigDecimal("1.0"),
-              closing_debit_balance: BigDecimal("2.0"),
+              balance_accounts: [{
+                account_id: "1500:12",
+                opening_debit_balance: BigDecimal("1.0"),
+                closing_debit_balance: BigDecimal("2.0"),
+              }],
               party_info: {
                 payment_terms: {
                   days: 5,
@@ -364,14 +374,20 @@ RSpec.describe SAFT::V2 do
                 {},
               ],
               supplier_id: "S2",
-              opening_credit_balance: BigDecimal("3.0"),
-              closing_credit_balance: BigDecimal("4.0"),
+              balance_accounts: [{
+                opening_credit_balance: BigDecimal("3.0"),
+                closing_credit_balance: BigDecimal("4.0"),
+              }],
             },
             {
               name: "Been the Suied",
               addresses: [
                 {},
               ],
+              balance_accounts: [{
+                opening_credit_balance: BigDecimal("0.0"),
+                closing_credit_balance: BigDecimal("0.0"),
+              }],
               supplier_id: "S3",
             },
           ],
@@ -510,14 +526,14 @@ RSpec.describe SAFT::V2 do
                           country: "NO",
                           tax_base: BigDecimal("9000.0"),
                           tax_base_description: "Some random description",
-                          tax_amount: {
+                          credit_tax_amount: {
                             amount: BigDecimal("593.0"),
                           },
                           tax_exemption_reason: "550",
                           tax_declaration_period: "2020-04",
                         },
                         {
-                          tax_amount: {
+                          credit_tax_amount: {
                             amount: BigDecimal("5.0"),
                           },
                         },
@@ -604,8 +620,8 @@ RSpec.describe SAFT::V2 do
           .then { described_class.scribe(_1) }
           .tap { expect(_1).to(eq(fixture_read("biggest.xml"))) }
           .tap { expect(described_class.validate(_1)).to(be_xsd_valid) }
-          # .then { described_class.parse(_1) }
-          # .tap { expect(_1.to_hash).to(hash_has_same_data(biggest)) }
+          .then { described_class.parse(_1) }
+          .tap { expect(_1.to_hash).to(hash_has_same_data(biggest)) }
       end
     end
   end

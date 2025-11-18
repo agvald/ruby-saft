@@ -55,7 +55,8 @@ module SAFT::V2::Types
         klass = Class.new(Dry::Struct) do
           attribute(:analysis_type, base::SAFcodeType)
           attribute(:analysis_id, base::SAFlongtextType)
-          attribute(:analysis_amount, base::AmountStructure.optional.meta(omittable: true))
+          attribute(:debit_analysis_amount, base::AmountStructure.optional.meta(omittable: true))
+          attribute(:credit_analysis_amount, base::AmountStructure.optional.meta(omittable: true))
         end
 
         base.const_set(:AnalysisStructure, klass)
@@ -74,7 +75,8 @@ module SAFT::V2::Types
           attribute(:country, base::ISOCountryCode.optional.meta(omittable: true))
           attribute(:tax_base, Types::Decimal.optional.meta(omittable: true))
           attribute(:tax_base_description, base::SAFmiddle2textType.optional.meta(omittable: true))
-          attribute(:tax_amount, base::AmountStructure)
+          attribute(:debit_tax_amount, base::AmountStructure.optional.meta(omittable: true))
+          attribute(:credit_tax_amount, base::AmountStructure.optional.meta(omittable: true))
           attribute(:tax_exemption_reason, base::SAFmiddle2textType.optional.meta(omittable: true))
           attribute(:tax_declaration_period, base::SAFmiddle1textType.optional.meta(omittable: true))
         end
@@ -253,14 +255,20 @@ module SAFT::V2::Types
 
         base.const_set(:Account, klass)
 
-        klass = Class.new(base::CompanyStructure) do
-          attribute(:customer_id, base::SAFmiddle1textType)
-          attribute(:self_billing_indicator, base::SAFcodeType.optional.meta(omittable: true))
+        klass = Class.new(Dry::Struct) do
           attribute(:account_id, base::SAFmiddle2textType.optional.meta(omittable: true))
           attribute(:opening_debit_balance, base::SAFmonetaryType.optional.meta(omittable: true))
           attribute(:opening_credit_balance, base::SAFmonetaryType.optional.meta(omittable: true))
           attribute(:closing_debit_balance, base::SAFmonetaryType.optional.meta(omittable: true))
           attribute(:closing_credit_balance, base::SAFmonetaryType.optional.meta(omittable: true))
+        end
+
+        base.const_set(:BalanceAccount, klass)
+
+        klass = Class.new(base::CompanyStructure) do
+          attribute(:customer_id, base::SAFmiddle1textType)
+          attribute(:self_billing_indicator, base::SAFcodeType.optional.meta(omittable: true))
+          attribute(:balance_accounts, Types::Array.of(base::BalanceAccount))
           attribute(:party_info, base::PartyInfoStructure.optional.meta(omittable: true))
         end
 
@@ -269,11 +277,7 @@ module SAFT::V2::Types
         klass = Class.new(base::CompanyStructure) do
           attribute(:supplier_id, base::SAFmiddle1textType)
           attribute(:self_billing_indicator, base::SAFcodeType.optional.meta(omittable: true))
-          attribute(:account_id, base::SAFmiddle2textType.optional.meta(omittable: true))
-          attribute(:opening_debit_balance, base::SAFmonetaryType.optional.meta(omittable: true))
-          attribute(:opening_credit_balance, base::SAFmonetaryType.optional.meta(omittable: true))
-          attribute(:closing_debit_balance, base::SAFmonetaryType.optional.meta(omittable: true))
-          attribute(:closing_credit_balance, base::SAFmonetaryType.optional.meta(omittable: true))
+          attribute(:balance_accounts, Types::Array.of(base::BalanceAccount))
           attribute(:party_info, base::PartyInfoStructure.optional.meta(omittable: true))
         end
 
